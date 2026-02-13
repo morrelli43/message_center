@@ -88,7 +88,8 @@ def receive_message():
         
         # Add timestamp if not provided
         if 'timestamp' not in data:
-            data['timestamp'] = datetime.utcnow().isoformat() + 'Z'
+            from datetime import timezone
+            data['timestamp'] = datetime.now(timezone.utc).isoformat()
         
         # Set defaults
         data.setdefault('source', 'Unknown')
@@ -162,4 +163,7 @@ if __name__ == '__main__':
     
     # Use debug mode only in development
     debug_mode = os.environ.get('DEBUG', 'False').lower() == 'true'
-    socketio.run(app, host=host, port=port, debug=debug_mode, allow_unsafe_werkzeug=debug_mode)
+    
+    # Note: allow_unsafe_werkzeug is needed for development server
+    # In production, use a proper WSGI server like Gunicorn
+    socketio.run(app, host=host, port=port, debug=debug_mode, allow_unsafe_werkzeug=True)

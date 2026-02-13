@@ -335,11 +335,14 @@
             
             let metadataHTML = '';
             if (message.metadata && Object.keys(message.metadata).length > 0) {
-                metadataHTML = `
-                    <div class="message-metadata">
-                        <strong>Metadata:</strong> ${JSON.stringify(message.metadata, null, 2)}
-                    </div>
-                `;
+                const metadataDiv = document.createElement('div');
+                metadataDiv.className = 'message-metadata';
+                const strong = document.createElement('strong');
+                strong.textContent = 'Metadata: ';
+                metadataDiv.appendChild(strong);
+                const metadataText = document.createTextNode(JSON.stringify(message.metadata, null, 2));
+                metadataDiv.appendChild(metadataText);
+                metadataHTML = metadataDiv.outerHTML;
             }
 
             return `

@@ -11,10 +11,10 @@ services:
       - MAX_MESSAGES=100
       # Uncomment and set your Pushbullet API key to enable Pushbullet notifications
       # - PUSHBULLET_API_KEY=your_api_key_here
-    volumes:
-      # Uncomment to mount a custom .env file
-      # - ./.env:/app/.env
-      - ./templates:/app/templates
+    # Uncomment the volume below for development only to enable hot-reload of templates
+    # DO NOT use in production as it can lead to inconsistencies
+    # volumes:
+      # - ./templates:/app/templates
     restart: unless-stopped
     networks:
       - message-center-network
