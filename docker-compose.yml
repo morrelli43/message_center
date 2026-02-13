@@ -12,7 +12,8 @@ services:
       # Uncomment and set your Pushbullet API key to enable Pushbullet notifications
       # - PUSHBULLET_API_KEY=your_api_key_here
     # Uncomment the volume below for development only to enable hot-reload of templates
-    # DO NOT use in production as it can lead to inconsistencies
+    # DO NOT use in production as templates are already built into the Docker image
+    # and runtime changes could cause file synchronization issues
     # volumes:
       # - ./templates:/app/templates
     restart: unless-stopped
