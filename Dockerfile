@@ -18,6 +18,7 @@ EXPOSE 5000
 ENV PYTHONUNBUFFERED=1
 ENV HOST=0.0.0.0
 ENV PORT=5000
+ENV DEBUG=false
 
 # Run the application
 CMD ["python", "app.py"]

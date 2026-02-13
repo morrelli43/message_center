@@ -160,4 +160,6 @@ if __name__ == '__main__':
     print(f"Starting Message Center on {host}:{port}")
     print(f"Registered output handlers: {list(output_handlers.keys())}")
     
-    socketio.run(app, host=host, port=port, debug=True, allow_unsafe_werkzeug=True)
+    # Use debug mode only in development
+    debug_mode = os.environ.get('DEBUG', 'False').lower() == 'true'
+    socketio.run(app, host=host, port=port, debug=debug_mode, allow_unsafe_werkzeug=debug_mode)

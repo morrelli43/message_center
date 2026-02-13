@@ -45,7 +45,7 @@ def create_pushbullet_handler(api_key):
         }
         
         # Send to Pushbullet
-        response = requests.post(url, json=payload, headers=headers)
+        response = requests.post(url, json=payload, headers=headers, timeout=10)
         response.raise_for_status()
         
         return response.json()
