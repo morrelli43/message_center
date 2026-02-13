@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  message-center:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=5000
+      - MAX_MESSAGES=100
+      # Uncomment and set your Pushbullet API key to enable Pushbullet notifications
+      # - PUSHBULLET_API_KEY=your_api_key_here
+    # Uncomment the volume below for development only to enable hot-reload of templates
+    # DO NOT use in production as templates are already built into the Docker image
+    # and runtime changes could cause file synchronization issues
+    # volumes:
+      # - ./templates:/app/templates
+    restart: unless-stopped
+    networks:
+      - message-center-network
+
+networks:
+  message-center-network:
+    driver: bridge
